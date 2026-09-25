@@ -124,10 +124,20 @@ html, body {
 }
 
 /* ==========================================================================
-   3. EFECTOS DE FONDO (DISCO SPOTLIGHTS, GRID SYNTHWAVE, SCANLINES)
+   3. EFECTOS DE FONDO CONFINADOS (SIN DESBORDAMIENTOS)
    ========================================================================== */
-.bg-gradient-universe {
+.fx-background-container {
   position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-gradient-universe {
+  position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 18%, rgba(255, 42, 133, 0.3) 0%, transparent 60%),
               radial-gradient(circle at 85% 70%, rgba(157, 37, 244, 0.28) 0%, transparent 50%),
@@ -136,12 +146,11 @@ html, body {
   background-size: 300% 300%;
   animation: universeGradient 16s ease infinite;
   z-index: 1;
-  pointer-events: none;
 }
 
 /* Haces de luz de discoteca en tonos Hot Pink & Ultravioleta */
 .disco-spotlights {
-  position: fixed;
+  position: absolute;
   top: -160px;
   left: 50%;
   transform: translateX(-50%);
@@ -163,13 +172,12 @@ html, body {
   filter: blur(25px);
   animation: rotateLights 22s linear infinite;
   z-index: 2;
-  pointer-events: none;
   opacity: 0.9;
 }
 
-/* Rejilla synthwave inspirada en los gráficos detrás de la pantera */
+/* Rejilla synthwave en perspectiva */
 .grid-horizon {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: -50%;
   width: 200%;
@@ -183,30 +191,27 @@ html, body {
   transform-origin: bottom center;
   animation: synthGridMove 4s linear infinite;
   z-index: 3;
-  pointer-events: none;
   opacity: 0.45;
   box-shadow: 0 -20px 60px rgba(255, 42, 133, 0.15);
 }
 
 /* Partículas Canvas */
 #particlesCanvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 4;
-  pointer-events: none;
 }
 
 /* CRT Scanlines */
 .scanlines-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
   background: linear-gradient(rgba(18, 12, 28, 0) 50%, rgba(0, 0, 0, 0.38) 50%);
   background-size: 100% 4px;
   z-index: 900;
-  pointer-events: none;
   opacity: 0.35;
 }
 
@@ -221,11 +226,13 @@ html, body {
   position: relative;
   z-index: 10;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 26px 20px;
+  padding: 20px 16px;
+  box-sizing: border-box;
 }
 
 .main-card {
@@ -243,9 +250,9 @@ html, body {
    ========================================================================== */
 .avatar-wrapper {
   position: relative;
-  width: 136px;
-  height: 136px;
-  margin-bottom: 22px;
+  width: 126px;
+  height: 126px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,7 +345,7 @@ html, body {
 .identity-section {
   text-align: center;
   width: 100%;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 
 .brand-title {
@@ -466,7 +473,7 @@ html, body {
    ========================================================================== */
 .action-container {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 22px;
   position: relative;
 }
 
@@ -582,7 +589,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   position: relative;
 }
 
@@ -620,9 +627,9 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 24px;
+  gap: 22px;
   width: 100%;
-  margin-bottom: 34px;
+  margin-bottom: 22px;
 }
 
 .social-item {
@@ -744,7 +751,7 @@ html, body {
    ========================================================================== */
 .club-footer {
   text-align: center;
-  padding: 16px 12px;
+  padding: 12px 10px;
   font-family: var(--font-orbitron);
   font-size: 11px;
   font-weight: 600;
@@ -777,14 +784,18 @@ html, body {
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: width 0.15s ease, height 0.15s ease, border-color 0.2s ease;
+    opacity: 0;
+    transition: opacity 0.2s ease, width 0.15s ease, height 0.15s ease, border-color 0.2s ease;
     z-index: 9999;
   }
+  .cursor-glow.visible {
+    opacity: 1;
+  }
   .cursor-glow.active {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-color: var(--neon-purple);
-    box-shadow: 0 0 22px var(--neon-purple), 0 0 35px var(--panther-pink);
+    box-shadow: 0 0 24px var(--neon-purple), 0 0 35px var(--panther-pink);
   }
 }
 @media (pointer: coarse) {

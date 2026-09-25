@@ -34,7 +34,7 @@
   <!-- Estilos Separados -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="club-beat-pulse">
+<body>
 
   <!-- Preloader con Logo Oficial -->
   <div id="preloader">
@@ -44,23 +44,14 @@
     <div class="loader-text">NIGHT MODE INITIALIZING...</div>
   </div>
 
-  <!-- ==========================================================================
-       EFECTOS AMBIENTALES DE FONDO
-       ========================================================================== -->
-  <!-- Degradado dinámico espacial -->
-  <div class="bg-gradient-universe" aria-hidden="true"></div>
-
-  <!-- Luces / Haces de discoteca girando -->
-  <div class="disco-spotlights" aria-hidden="true"></div>
-
-  <!-- Rejilla synthwave en perspectiva al infinito -->
-  <div class="grid-horizon" aria-hidden="true"></div>
-
-  <!-- Canvas para partículas flotantes neón -->
-  <canvas id="particlesCanvas" aria-hidden="true"></canvas>
-
-  <!-- Efecto de líneas scanline CRT retro-futurista -->
-  <div class="scanlines-overlay" aria-hidden="true"></div>
+  <!-- Contenedor Fijo Confinado de Efectos Ambientales -->
+  <div class="fx-background-container" aria-hidden="true">
+    <div class="bg-gradient-universe"></div>
+    <div class="disco-spotlights"></div>
+    <div class="grid-horizon"></div>
+    <canvas id="particlesCanvas"></canvas>
+    <div class="scanlines-overlay"></div>
+  </div>
 
   <!-- Puntero láser / Cursor custom para desktop -->
   <div class="cursor-glow" id="customCursor" aria-hidden="true"></div>
@@ -69,7 +60,7 @@
        CONTENIDO PRINCIPAL (SPA LINKTREE)
        ========================================================================== -->
   <div class="app-viewport">
-    <main class="main-card">
+    <main class="main-card club-beat-pulse">
 
       <!-- 1) AVATAR / LOGO CENTRADO CON EFECTOS -->
       <section class="avatar-wrapper" aria-label="Logo Tío Panthera">

@@ -123,9 +123,28 @@ document.addEventListener('DOMContentLoaded', () => {
      ------------------------------------------------------------------------ */
   const customCursor = document.getElementById('customCursor');
   if (customCursor && window.matchMedia('(pointer: fine)').matches) {
+    // Seguimiento del mouse
     window.addEventListener('mousemove', (e) => {
       customCursor.style.left = `${e.clientX}px`;
       customCursor.style.top = `${e.clientY}px`;
+      if (!customCursor.classList.contains('visible')) {
+        customCursor.classList.add('visible');
+      }
+    });
+
+    // Ocultar al salir de la ventana del navegador
+    document.addEventListener('mouseleave', () => {
+      customCursor.classList.remove('visible');
+    });
+
+    // Mostrar al reingresar a la ventana
+    document.addEventListener('mouseenter', () => {
+      customCursor.classList.add('visible');
+    });
+
+    // Ocultar si la ventana pierde el foco
+    window.addEventListener('blur', () => {
+      customCursor.classList.remove('visible');
     });
 
     // Efecto expansivo en hover sobre enlaces y botones
