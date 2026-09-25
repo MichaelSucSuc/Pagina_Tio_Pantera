@@ -168,4 +168,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ------------------------------------------------------------------------
+     6. CONTROL DEL AVISO FLOTANTE DE TIKTOK
+     ------------------------------------------------------------------------ */
+  const tiktokNotice = document.getElementById('tiktokNotice');
+  const closeNoticeBtn = document.getElementById('closeNoticeBtn');
+
+  if (closeNoticeBtn && tiktokNotice) {
+    closeNoticeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tiktokNotice.classList.add('hide');
+      setTimeout(() => {
+        tiktokNotice.style.display = 'none';
+      }, 380);
+    });
+  }
+
 });

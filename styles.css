@@ -231,7 +231,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 16px;
+  padding: 90px 16px 30px 16px;
   box-sizing: border-box;
 }
 
@@ -581,6 +581,40 @@ html, body {
   user-select: none;
 }
 
+/* Tip complementario para TikTok Browser bajo el botón */
+.browser-tip {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-rajdhani);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgba(241, 245, 249, 0.9);
+  background: rgba(16, 10, 26, 0.75);
+  border: 1px solid rgba(255, 42, 133, 0.35);
+  border-radius: 12px;
+  padding: 8px 14px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+}
+
+.browser-tip i {
+  color: var(--neon-cyan);
+  font-size: 14px;
+  filter: drop-shadow(0 0 6px var(--neon-cyan));
+  flex-shrink: 0;
+}
+
+.browser-tip strong {
+  color: var(--panther-pink);
+  text-shadow: 0 0 8px rgba(255, 42, 133, 0.6);
+}
+
 /* ==========================================================================
    8. COMPONENTE 4: SEPARADOR "SÍGUENOS"
    ========================================================================== */
@@ -914,11 +948,209 @@ html, body {
 }
 
 /* ==========================================================================
-   13. RESPONSIVE
+   13. AVISO / GUÍA FLOTANTE TIKTOK (TOP BAR & POINTER)
+   ========================================================================== */
+.tiktok-notice {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 470px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  animation: slideDownNotice 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+.tiktok-notice.hide {
+  opacity: 0;
+  transform: translate(-50%, -25px);
+  pointer-events: none;
+}
+
+.tiktok-notice-inner {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(13, 8, 22, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--panther-pink);
+  border-radius: 16px;
+  padding: 11px 13px;
+  box-shadow: 0 4px 25px rgba(255, 42, 133, 0.42),
+              0 0 35px rgba(157, 37, 244, 0.3),
+              inset 0 0 15px rgba(255, 42, 133, 0.15);
+}
+
+.tiktok-notice-left {
+  flex-shrink: 0;
+}
+
+.tiktok-notice-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #050408;
+  border: 1.5px solid var(--panther-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 229, 255, 0.6), 2px 0 10px rgba(255, 42, 133, 0.7);
+  animation: pulseBlink 2s infinite alternate;
+}
+
+.tiktok-notice-badge i {
+  filter: drop-shadow(-1.5px 0 0 #00e5ff) drop-shadow(1.5px 0 0 var(--panther-pink));
+}
+
+.tiktok-notice-body {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.tiktok-notice-title {
+  font-family: var(--font-orbitron);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--panther-pink);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 8px var(--panther-pink);
+}
+
+.tiktok-notice-title i {
+  color: #ffbe26;
+  text-shadow: 0 0 8px rgba(255, 190, 38, 0.85);
+  font-size: 12px;
+}
+
+.tiktok-notice-desc {
+  font-family: var(--font-rajdhani);
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.dots-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--neon-cyan);
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dots-highlight i {
+  font-size: 11px;
+}
+
+.browser-highlight {
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(255, 42, 133, 0.35), rgba(157, 37, 244, 0.35));
+  border: 1px solid var(--panther-pink);
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--panther-pink);
+  white-space: nowrap;
+}
+
+.tiktok-notice-close {
+  background: transparent;
+  border: none;
+  color: rgba(241, 245, 249, 0.65);
+  font-size: 17px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tiktok-notice-close:hover {
+  color: var(--panther-pink);
+  background-color: rgba(255, 42, 133, 0.15);
+  transform: scale(1.15);
+}
+
+/* Indicador con flecha animada hacia la esquina superior derecha */
+.tiktok-top-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  margin-top: 6px;
+  margin-right: 8px;
+  background: rgba(7, 6, 11, 0.94);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+  animation: bounceDiagonal 1.4s ease-in-out infinite alternate;
+}
+
+.tiktok-top-arrow .arrow-text {
+  font-family: var(--font-orbitron);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan);
+}
+
+.tiktok-top-arrow .arrow-icon {
+  color: var(--neon-cyan);
+  font-size: 12px;
+  filter: drop-shadow(0 0 6px var(--neon-cyan));
+}
+
+@keyframes bounceDiagonal {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(4px, -4px);
+  }
+}
+
+@keyframes slideDownNotice {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -35px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ==========================================================================
+   14. RESPONSIVE
    ========================================================================== */
 @media (max-width: 480px) {
   .app-viewport {
-    padding: 30px 16px 40px 16px;
+    padding: 116px 14px 40px 14px;
   }
   .brand-title {
     font-size: 24px;
@@ -940,5 +1172,21 @@ html, body {
   }
   .social-btn i {
     font-size: 24px;
+  }
+  .tiktok-notice-desc {
+    font-size: 12.5px;
+  }
+  .tiktok-notice-inner {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .tiktok-notice-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  .browser-tip {
+    font-size: 12px;
+    padding: 7px 11px;
   }
 }

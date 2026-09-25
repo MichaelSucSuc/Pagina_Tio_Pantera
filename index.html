@@ -57,6 +57,35 @@
   <div class="cursor-glow" id="customCursor" aria-hidden="true"></div>
 
   <!-- ==========================================================================
+       AVISO GUÍA TIKTOK: TOCA LOS 3 PUNTOS Y ABRE EN NAVEGADOR
+       ========================================================================== -->
+  <aside id="tiktokNotice" class="tiktok-notice" role="alert" aria-live="polite">
+    <div class="tiktok-notice-inner">
+      <div class="tiktok-notice-left">
+        <div class="tiktok-notice-badge">
+          <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="tiktok-notice-body">
+        <div class="tiktok-notice-title">
+          <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> AVISO PARA USUARIOS DE TIKTOK
+        </div>
+        <p class="tiktok-notice-desc">
+          Toca el menú (<span class="dots-highlight"><i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i> tres puntos</span>) arriba a la derecha y elige <span class="browser-highlight">"Abrir en el navegador"</span> para unirte sin errores.
+        </p>
+      </div>
+      <button type="button" id="closeNoticeBtn" class="tiktok-notice-close" aria-label="Cerrar aviso">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <!-- Indicador con flecha apuntando a los 3 puntos arriba a la derecha -->
+    <div class="tiktok-top-arrow" aria-hidden="true">
+      <span class="arrow-text">TOCA AQUÍ ( 3 PUNTOS )</span>
+      <i class="fa-solid fa-arrow-trend-up arrow-icon"></i>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
        CONTENIDO PRINCIPAL (SPA LINKTREE)
        ========================================================================== -->
   <div class="app-viewport">
@@ -110,6 +139,11 @@
           <i class="fa-brands fa-telegram btn-icon" aria-hidden="true"></i>
           <span class="btn-text">ÚNETE AL GRUPO DE TELEGRAM</span>
         </a>
+        <!-- Tip de apoyo para TikTok Browser -->
+        <div class="browser-tip">
+          <i class="fa-solid fa-compass" aria-hidden="true"></i>
+          <span>¿No abre directo? Toca <strong>⋮</strong> arriba a la derecha y elige <strong>"Abrir en el navegador"</strong></span>
+        </div>
       </section>
 
       <!-- 4) SEPARADOR LUMINOSO "SÍGUENOS" -->
