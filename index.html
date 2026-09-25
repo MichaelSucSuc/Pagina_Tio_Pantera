@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🐆 TÍO PANTHERA AQP | Night Club</title>
+
+  <!-- Meta Tags SEO & Open Graph -->
+  <meta name="description" content="Tío Panthera AQP - Universitarias AQP · Comunidad. La noche empieza aquí. Únete a la experiencia nightclub cyberpunk más exclusiva.">
+  <meta name="keywords" content="Tio Panthera, Universitarias AQP, Nightclub, Discoteca Arequipa, Cyberpunk, Fiesta, Telegram">
+  <meta name="author" content="Tío Panthera AQP">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🐆 TÍO PANTHERA AQP | Night Club">
+  <meta property="og:description" content="Universitarias AQP · Comunidad. La noche empieza aquí. Night Mode ON.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="🐆 TÍO PANTHERA AQP | Night Club">
+  <meta property="twitter:description" content="Universitarias AQP · Comunidad. La noche empieza aquí.">
+
+  <!-- Favicon Emoji 🐆 Data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐆</text></svg>">
+
+  <!-- Google Fonts: Orbitron (Títulos) & Rajdhani (Cuerpo y detalles) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES CSS & RESET GLOBAL
+       ========================================================================== */
+    :root {
+      --bg-base: #0a0a0f;
+      --bg-card: rgba(18, 14, 30, 0.65);
+      --neon-magenta: #ff00ff;
+      --neon-cyan: #00ffff;
+      --neon-purple: #b026ff;
+      --neon-pink: #ff2d95;
+      --neon-green: #00ff88;
+      --deep-purple: #6a0dad;
+      --text-white: #ffffff;
+      --text-dim: #b8b8d4;
+      --font-orbitron: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-rajdhani: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+      --glow-cyan: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.35);
+      --glow-magenta: 0 0 10px rgba(255, 0, 255, 0.6), 0 0 25px rgba(255, 0, 255, 0.35);
+      --glow-dual: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.4);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-base);
+      color: var(--text-white);
+      font-family: var(--font-rajdhani);
+      font-size: 16px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       2. PRELOADER CYBERPUNK
+       ========================================================================== */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #08080d;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, rgba(10, 10, 15, 0.9) 70%);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.5), inset 0 0 25px rgba(255, 0, 255, 0.5);
+    }
+
+    .loader-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--neon-cyan), var(--neon-magenta), var(--neon-purple), var(--neon-cyan));
+      animation: spinBorder 1.2s linear infinite;
+      z-index: 1;
+    }
+
+    .loader-ring::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: #0a0a10;
+      z-index: 2;
+    }
+
+    .loader-icon {
+      font-size: 46px;
+      position: relative;
+      z-index: 3;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+      animation: pulseGrow 1.2s ease-in-out infinite alternate;
+    }
+
+    .loader-text {
+      margin-top: 24px;
+      font-family: var(--font-orbitron);
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      text-shadow: var(--glow-cyan);
+      animation: blinkText 0.8s ease-in-out infinite alternate;
+    }
+
+    /* ==========================================================================
+       3. EFECTOS DE FONDO (DISCO SPOTLIGHTS, GRID SYNTHWAVE, SCANLINES)
+       ========================================================================== */
+    /* Dynamic Animated Gradient Background */
+    .bg-gradient-universe {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(106, 13, 173, 0.35) 0%, transparent 60%),
+                  radial-gradient(circle at 85% 70%, rgba(0, 212, 255, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 15% 85%, rgba(255, 0, 255, 0.25) 0%, transparent 50%),
+                  linear-gradient(135deg, #090910 0%, #12091c 50%, #060e18 100%);
+      background-size: 300% 300%;
+      animation: universeGradient 16s ease infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Overhead Disco Beams / Rotating Spotlights */
+    .disco-spotlights {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 900px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(0, 255, 255, 0.12) 30deg,
+        transparent 60deg,
+        rgba(255, 0, 255, 0.14) 110deg,
+        transparent 150deg,
+        rgba(176, 38, 255, 0.12) 200deg,
+        transparent 250deg,
+        rgba(0, 255, 255, 0.13) 300deg,
+        transparent 360deg
+      );
+      filter: blur(25px);
+      animation: rotateLights 22s linear infinite;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    /* Synthwave 3D Perspective Grid */
+    .grid-horizon {
+      position: fixed;
+      bottom: 0;
+      left: -50%;
+      width: 200%;
+      height: 48vh;
+      background: 
+        linear-gradient(to bottom, rgba(10, 10, 15, 1) 0%, rgba(10, 10, 15, 0.2) 40%, rgba(10, 10, 15, 0) 100%),
+        linear-gradient(transparent 94%, rgba(0, 255, 255, 0.22) 95%, rgba(255, 0, 255, 0.4) 100%),
+        linear-gradient(90deg, transparent 94%, rgba(176, 38, 255, 0.22) 95%, rgba(0, 255, 255, 0.3) 100%);
+      background-size: 100% 100%, 50px 35px, 50px 35px;
+      transform: perspective(300px) rotateX(65deg);
+      transform-origin: bottom center;
+      animation: synthGridMove 4s linear infinite;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.45;
+      box-shadow: 0 -20px 60px rgba(0, 255, 255, 0.15);
+    }
+
+    /* Particles Canvas */
+    #particlesCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* CRT Scanlines Overlay */
+    .scanlines-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 26, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+      background-size: 100% 4px;
+      z-index: 900;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Subtle Beat Pulse effect on the whole view */
+    .club-beat-pulse {
+      animation: globalBeatPulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+
+    /* ==========================================================================
+       4. ESTRUCTURA PRINCIPAL & WRAPPER
+       ========================================================================== */
+    .app-viewport {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 38px 20px 45px 20px;
+    }
+
+    .main-card {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       5. COMPONENTE 1: AVATAR / LOGO NEÓN
+       ========================================================================== */
+    .avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatAvatar 4.5s ease-in-out infinite;
+    }
+
+    /* Neon Pulsing Aura */
+    .avatar-aura {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, rgba(255, 0, 255, 0.3) 40%, transparent 70%);
+      filter: blur(14px);
+      animation: auraPulse 2.4s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    /* Rotating Conic Border */
+    .avatar-border {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 3.5px;
+      background: conic-gradient(from 0deg, var(--neon-cyan), var(--neon-magenta), var(--neon-purple), var(--neon-pink), var(--neon-cyan));
+      animation: spinBorder 3.5s linear infinite;
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 35px rgba(255, 0, 255, 0.5);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #24143a 0%, #0d0918 80%, #07050d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    /* Neon Panther Emoji */
+    .avatar-emoji {
+      font-size: 64px;
+      line-height: 1;
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 16px rgba(255, 0, 255, 0.8)) drop-shadow(0 0 30px rgba(0, 255, 255, 0.5));
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      user-select: none;
+    }
+
+    .avatar-wrapper:hover .avatar-emoji {
+      transform: scale(1.15) rotate(-6deg);
+    }
+
+    /* Live Equalizer indicator inside avatar */
+    .live-sound-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 4px;
+      background: rgba(10, 10, 18, 0.9);
+      border: 1.5px solid var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+      border-radius: 12px;
+      padding: 3px 7px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      z-index: 4;
+    }
+
+    .eq-bar {
+      width: 2.5px;
+      background: var(--neon-cyan);
+      border-radius: 2px;
+      box-shadow: 0 0 5px var(--neon-cyan);
+    }
+    .eq-bar:nth-child(1) { height: 7px; animation: eqAnim 0.7s ease infinite alternate; }
+    .eq-bar:nth-child(2) { height: 12px; animation: eqAnim 0.5s ease 0.2s infinite alternate; }
+    .eq-bar:nth-child(3) { height: 9px; animation: eqAnim 0.6s ease 0.4s infinite alternate; }
+
+    /* ==========================================================================
+       6. COMPONENTE 2: NOMBRE, SUBTÍTULO & BADGE
+       ========================================================================== */
+    .identity-section {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 26px;
+    }
+
+    /* Glitch Title */
+    .brand-title {
+      font-family: var(--font-orbitron);
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                   0 0 20px var(--neon-cyan),
+                   0 0 40px var(--neon-magenta);
+      margin-bottom: 6px;
+    }
+
+    /* Glitch Layers */
+    .glitching {
+      animation: glitchSkew 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    .brand-title::before,
+    .brand-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip: rect(0, 0, 0, 0);
+      pointer-events: none;
+    }
+
+    .glitching::before {
+      left: -2.5px;
+      text-shadow: 2px 0 var(--neon-cyan);
+      animation: glitchLayer1 0.32s steps(2, start) both;
+    }
+
+    .glitching::after {
+      left: 2.5px;
+      text-shadow: -2px 0 var(--neon-magenta);
+      animation: glitchLayer2 0.32s steps(2, start) both;
+    }
+
+    /* Subtitle */
+    .brand-subtitle {
+      font-family: var(--font-rajdhani);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: block;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px rgba(184, 184, 212, 0.5);
+    }
+
+    /* Glowing Horizontal Divider */
+    .neon-divider {
+      width: 160px;
+      height: 2px;
+      margin: 0 auto 16px auto;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
+      box-shadow: 0 0 12px var(--neon-cyan), 0 0 18px var(--neon-magenta);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .neon-divider::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ffffff, 0 0 15px var(--neon-cyan);
+    }
+
+    /* Tagline & Night Mode Badge Container */
+    .badge-tagline-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tagline-text {
+      font-size: 13.5px;
+      letter-spacing: 1.5px;
+      color: #dfdfea;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .night-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid rgba(0, 255, 136, 0.55);
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.25), inset 0 0 10px rgba(0, 255, 136, 0.15);
+      font-family: var(--font-orbitron);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--neon-green);
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--neon-green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--neon-green), 0 0 18px var(--neon-green);
+      animation: pulseBlink 1.2s ease-in-out infinite alternate;
+    }
+
+    /* ==========================================================================
+       7. COMPONENTE 3: BOTÓN PROTAGONISTA TELEGRAM
+       ========================================================================== */
+    .action-container {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .btn-telegram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      width: 100%;
+      padding: 18px 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-family: var(--font-orbitron);
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(115deg, #00d4ff 0%, #0088cc 30%, #b026ff 70%, #ff00ff 100%);
+      background-size: 260% 260%;
+      animation: gradientShift 4.5s ease infinite;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.55),
+                  0 0 40px rgba(255, 0, 255, 0.35),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Shine effect moving across the button */
+    .btn-telegram::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -120%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.45) 50%,
+        transparent
+      );
+      transform: rotate(30deg);
+      animation: shineSweep 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Inner glowing rim */
+    .btn-telegram::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+    }
+
+    .btn-telegram:hover {
+      transform: scale(1.045) translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.85),
+                  0 0 55px rgba(255, 0, 255, 0.75),
+                  0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-telegram:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+
+    .btn-telegram .btn-icon {
+      font-size: 26px;
+      color: #ffffff;
+      filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
+      transition: transform 0.3s ease;
+    }
+
+    .btn-telegram:hover .btn-icon {
+      transform: scale(1.15) rotate(12deg);
+    }
+
+    .btn-telegram .btn-text {
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 255, 255, 0.9);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Pulsing VIP Badge on button */
+    .btn-badge-vip {
+      position: absolute;
+      top: -8px;
+      right: 18px;
+      background: #ff00ff;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      box-shadow: 0 0 12px #ff00ff;
+      animation: vipPulse 1.8s infinite;
+      z-index: 5;
+    }
+
+    /* ==========================================================================
+       8. COMPONENTE 4: SEPARADOR "SÍGUENOS"
+       ========================================================================== */
+    .separator-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .separator-line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), var(--neon-magenta));
+      box-shadow: 0 0 10px var(--neon-magenta);
+      border-radius: 2px;
+      animation: lineExpand 3s ease-in-out infinite alternate;
+    }
+
+    .separator-line.right {
+      background: linear-gradient(90deg, var(--neon-magenta), rgba(0, 255, 255, 0.4), transparent);
+      box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    .separator-text {
+      font-family: var(--font-orbitron);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #ffffff;
+      padding: 0 16px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                   0 0 16px var(--neon-cyan);
+      user-select: none;
+    }
+
+    /* ==========================================================================
+       9. COMPONENTE 5: REDES SOCIALES CIRCULARES
+       ========================================================================== */
+    .socials-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      margin-bottom: 34px;
+    }
+
+    .social-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .social-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+      text-decoration: none;
+      z-index: 10;
+    }
+
+    .social-btn i {
+      font-size: 27px;
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3), filter 0.3s ease;
+      color: #ffffff;
+    }
+
+    .social-label {
+      font-family: var(--font-rajdhani);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    /* Staggered Floating Bounce Animation (en cadena) */
+    .social-item:nth-child(1) {
+      animation: bounceChain 3.2s ease-in-out 0s infinite;
+    }
+    .social-item:nth-child(2) {
+      animation: bounceChain 3.2s ease-in-out 0.4s infinite;
+    }
+    .social-item:nth-child(3) {
+      animation: bounceChain 3.2s ease-in-out 0.8s infinite;
+    }
+
+    /* Brand 1: Facebook (#1877f2) */
+    .social-btn.facebook {
+      background: radial-gradient(circle at 35% 35%, rgba(24, 119, 242, 0.45), rgba(12, 20, 42, 0.85));
+      border: 1.5px solid rgba(24, 119, 242, 0.6);
+      box-shadow: 0 0 15px rgba(24, 119, 242, 0.4), inset 0 0 12px rgba(24, 119, 242, 0.2);
+    }
+    .social-btn.facebook i {
+      color: #ffffff;
+      text-shadow: 0 0 12px #1877f2;
+    }
+    .social-item:hover .social-btn.facebook {
+      transform: scale(1.15) rotate(360deg);
+      border-color: #1877f2;
+      box-shadow: 0 0 30px rgba(24, 119, 242, 0.9), 0 0 50px rgba(0, 212, 255, 0.6);
+    }
+    .social-item:hover .social-label.label-fb {
+      color: #1877f2;
+      text-shadow: 0 0 10px #1877f2;
+    }
+
+    /* Brand 2: TikTok (Negro + Cyan + Magenta) */
+    .social-btn.tiktok {
+      background: radial-gradient(circle at 35% 35%, rgba(255, 0, 255, 0.2), #07070a);
+      border: 1.5px solid rgba(0, 255, 255, 0.5);
+      box-shadow: -4px 0 15px rgba(0, 255, 255, 0.35), 4px 0 15px rgba(255, 0, 255, 0.35);
+      position: relative;
+    }
+    .social-btn.tiktok i {
+      color: #ffffff;
+      filter: drop-shadow(-2px 0 0 #00ffff) drop-shadow(2px 0 0 #ff00ff);
+    }
+    .social-item:hover .social-btn.tiktok {
+      transform: scale(1.15) rotate(360deg);
+      border-color: #ff00ff;
+      box-shadow: -6px 0 25px rgba(0, 255, 255, 0.8), 6px 0 25px rgba(255, 0, 255, 0.8);
+    }
+    .social-item:hover .social-label.label-tt {
+      color: #00ffff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Brand 3: Instagram (Gradiente Oficial) */
+    .social-btn.instagram {
+      background: linear-gradient(45deg, rgba(240, 148, 51, 0.3), rgba(230, 104, 60, 0.3), rgba(220, 39, 67, 0.3), rgba(204, 35, 102, 0.3), rgba(188, 24, 136, 0.3)), #0c0915;
+      border: 1.5px solid rgba(220, 39, 67, 0.6);
+      box-shadow: 0 0 18px rgba(220, 39, 67, 0.4), inset 0 0 12px rgba(240, 148, 51, 0.2);
+    }
+    .social-btn.instagram i {
+      color: #ffffff;
+      text-shadow: 0 0 12px #dc2743;
+    }
+    .social-item:hover .social-btn.instagram {
+      transform: scale(1.15) rotate(360deg);
+      border-color: #ff2d95;
+      box-shadow: 0 0 35px rgba(220, 39, 67, 0.85), 0 0 50px rgba(240, 148, 51, 0.6);
+    }
+    .social-item:hover .social-label.label-ig {
+      color: #ff2d95;
+      text-shadow: 0 0 10px #dc2743;
+    }
+
+    /* ==========================================================================
+       10. COMPONENTE 6: FOOTER ELEGANTE
+       ========================================================================== */
+    .club-footer {
+      text-align: center;
+      padding: 16px 12px;
+      font-family: var(--font-orbitron);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: rgba(184, 184, 212, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      width: 100%;
+      text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+      position: relative;
+    }
+
+    .club-footer span {
+      color: var(--neon-cyan);
+      text-shadow: var(--glow-cyan);
+    }
+
+    /* ==========================================================================
+       11. CURSOR CYBERPUNK (SOLO EN DISPOSITIVOS CON PUNTERO FINO)
+       ========================================================================== */
+    @media (pointer: fine) {
+      body {
+        cursor: crosshair;
+      }
+      .cursor-glow {
+        position: fixed;
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--neon-cyan);
+        box-shadow: 0 0 12px var(--neon-cyan), 0 0 24px var(--neon-magenta);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.15s ease, height 0.15s ease, border-color 0.2s ease;
+        z-index: 9999;
+      }
+      .cursor-glow.active {
+        width: 40px;
+        height: 40px;
+        border-color: var(--neon-magenta);
+        box-shadow: 0 0 20px var(--neon-magenta), 0 0 35px var(--neon-cyan);
+      }
+    }
+    @media (pointer: coarse) {
+      .cursor-glow {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       12. DEFINICIÓN DE KEYFRAMES / ANIMACIONES
+       ========================================================================== */
+    @keyframes spinBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateLights {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    @keyframes synthGridMove {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 0 0, 0 35px, 50px 0; }
+    }
+
+    @keyframes universeGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
+    }
+
+    @keyframes auraPulse {
+      0% { transform: scale(0.92); opacity: 0.55; }
+      100% { transform: scale(1.15); opacity: 0.95; }
+    }
+
+    @keyframes pulseBlink {
+      0% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1.15); }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes shineSweep {
+      0% { left: -120%; }
+      30%, 100% { left: 180%; }
+    }
+
+    @keyframes bounceChain {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes globalBeatPulse {
+      0%, 100% { transform: scale(1); }
+      10% { transform: scale(1.006); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.004); }
+      40% { transform: scale(1); }
+    }
+
+    @keyframes eqAnim {
+      0% { height: 4px; }
+      100% { height: 14px; }
+    }
+
+    @keyframes vipPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 10px #ff00ff; }
+      50% { transform: scale(1.12); box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff; }
+    }
+
+    @keyframes lineExpand {
+      0% { opacity: 0.6; transform: scaleX(0.85); }
+      100% { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes pulseGrow {
+      0% { transform: scale(0.9); }
+      100% { transform: scale(1.1); }
+    }
+
+    @keyframes blinkText {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Glitch Keyframes */
+    @keyframes glitchSkew {
+      0% { transform: skew(0deg); }
+      20% { transform: skew(-3deg); }
+      40% { transform: skew(4deg); }
+      60% { transform: skew(-2deg); }
+      80% { transform: skew(2deg); }
+      100% { transform: skew(0deg); }
+    }
+
+    @keyframes glitchLayer1 {
+      0% { clip: rect(10px, 9999px, 20px, 0); transform: skew(0.5deg); }
+      50% { clip: rect(35px, 9999px, 50px, 0); transform: skew(-0.5deg); }
+      100% { clip: rect(0, 0, 0, 0); }
+    }
+
+    @keyframes glitchLayer2 {
+      0% { clip: rect(25px, 9999px, 35px, 0); transform: skew(-0.5deg); }
+      50% { clip: rect(12px, 9999px, 28px, 0); transform: skew(0.5deg); }
+      100% { clip: rect(0, 0, 0, 0); }
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE ADAPTATIONS
+       ========================================================================== */
+    @media (max-width: 480px) {
+      .app-viewport {
+        padding: 30px 16px 40px 16px;
+      }
+      .brand-title {
+        font-size: 23px;
+      }
+      .brand-subtitle {
+        font-size: 13.5px;
+        letter-spacing: 2.5px;
+      }
+      .btn-telegram {
+        padding: 16px 18px;
+        font-size: 13px;
+      }
+      .socials-container {
+        gap: 18px;
+      }
+      .social-btn {
+        width: 62px;
+        height: 62px;
+      }
+      .social-btn i {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="club-beat-pulse">
+
+  <!-- ==========================================================================
+       PRELOADER CYBERPUNK (1.5s)
+       ========================================================================== -->
+  <div id="preloader">
+    <div class="loader-ring">
+      <div class="loader-icon">🐆</div>
+    </div>
+    <div class="loader-text">NIGHT MODE INITIALIZING...</div>
+  </div>
+
+  <!-- ==========================================================================
+       EFECTOS AMBIENTALES DE FONDO
+       ========================================================================== */ -->
+  <!-- Degradado dinámico espacial -->
+  <div class="bg-gradient-universe" aria-hidden="true"></div>
+
+  <!-- Luces / Haces de discoteca girando -->
+  <div class="disco-spotlights" aria-hidden="true"></div>
+
+  <!-- Rejilla synthwave en perspectiva al infinito -->
+  <div class="grid-horizon" aria-hidden="true"></div>
+
+  <!-- Canvas para partículas flotantes neón -->
+  <canvas id="particlesCanvas" aria-hidden="true"></canvas>
+
+  <!-- Efecto de líneas scanline CRT retro-futurista -->
+  <div class="scanlines-overlay" aria-hidden="true"></div>
+
+  <!-- Puntero láser / Cursor custom para desktop -->
+  <div class="cursor-glow" id="customCursor" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       CONTENIDO PRINCIPAL (SPA LINKTREE)
+       ========================================================================== -->
+  <div class="app-viewport">
+    <main class="main-card">
+
+      <!-- 1) AVATAR / LOGO CENTRADO CON EFECTOS -->
+      <section class="avatar-wrapper" aria-label="Logo Tío Panthera">
+        <div class="avatar-aura"></div>
+        <div class="avatar-border">
+          <div class="avatar-inner">
+            <span class="avatar-emoji" role="img" aria-label="Pantera Neón">🐆</span>
+          </div>
+        </div>
+        <!-- Indicador de audio / beat activo -->
+        <div class="live-sound-badge" title="Beat Audio Engine Active">
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+        </div>
+      </section>
+
+      <!-- 2) IDENTIDAD: NOMBRE, SUBTÍTULO, LÍNEA LUMINOSA & BADGE -->
+      <section class="identity-section">
+        <h1 class="brand-title" id="glitchTitle" data-text="TÍO PANTHERA AQP">
+          TÍO PANTHERA AQP
+        </h1>
+        <p class="brand-subtitle">UNIVERSITARIAS AQP · COMUNIDAD</p>
+        
+        <!-- Línea luminosa decorativa -->
+        <div class="neon-divider" aria-hidden="true"></div>
+
+        <!-- Tagline & Badge de Estado -->
+        <div class="badge-tagline-group">
+          <span class="tagline-text">"La noche empieza aquí"</span>
+          <div class="night-badge">
+            <span class="badge-dot"></span>
+            <span>NIGHT MODE ON</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3) BOTÓN PRINCIPAL PROTAGONISTA: TELEGRAM -->
+      <section class="action-container">
+        <a href="https://t.me/Universitarias_AQP_18" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-telegram" 
+           id="mainTelegramBtn"
+           aria-label="Únete al grupo exclusivo de Telegram">
+          <span class="btn-badge-vip">EXCLUSIVE VIP</span>
+          <i class="fa-brands fa-telegram btn-icon" aria-hidden="true"></i>
+          <span class="btn-text">ÚNETE AL GRUPO DE TELEGRAM</span>
+        </a>
+      </section>
+
+      <!-- 4) SEPARADOR LUMINOSO "SÍGUENOS" -->
+      <div class="separator-container" aria-hidden="true">
+        <div class="separator-line"></div>
+        <span class="separator-text">— SÍGUENOS —</span>
+        <div class="separator-line right"></div>
+      </div>
+
+      <!-- 5) REDES SOCIALES (3 ICONOS CIRCULARES CON SU RESPECTIVO GLOW) -->
+      <section class="socials-container" aria-label="Redes Sociales Oficiales">
+        
+        <!-- FACEBOOK -->
+        <div class="social-item">
+          <a href="https://www.facebook.com/share/1By9cea6iL/" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="social-btn facebook" 
+             aria-label="Facebook Tío Panthera AQP">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <span class="social-label label-fb">Facebook</span>
+        </div>
+
+        <!-- TIKTOK -->
+        <div class="social-item">
+          <a href="https://www.tiktok.com/@tiopanthera.aqp" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="social-btn tiktok" 
+             aria-label="TikTok Tío Panthera AQP">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <span class="social-label label-tt">TikTok</span>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="social-item">
+          <a href="https://www.instagram.com/tio_panthera_aqp" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="social-btn instagram" 
+             aria-label="Instagram Tío Panthera AQP">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <span class="social-label label-ig">Instagram</span>
+        </div>
+
+      </section>
+
+      <!-- 6) FOOTER OFICIAL -->
+      <footer class="club-footer">
+        © 2026 TÍO PANTHERA AQP · <span>NIGHT EDITION</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT AUTOCONTENIDO (PARTÍCULAS, GLITCH, INTERACCIONES)
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      /* ------------------------------------------------------------------------
+         1. CONTROL DEL PRELOADER (1.5 Segundos)
+         ------------------------------------------------------------------------ */
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('loaded');
+      }, 1500);
+
+      /* ------------------------------------------------------------------------
+         2. MOTOR DE PARTÍCULAS NEÓN (CANVAS 2D)
+         ------------------------------------------------------------------------ */
+      const canvas = document.getElementById('particlesCanvas');
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      // Cantidad de partículas adaptativa: 60 en desktop, 30 en pantallas móviles
+      const isMobile = window.innerWidth < 600;
+      const particleCount = isMobile ? 30 : 60;
+      const particles = [];
+
+      const neonColors = [
+        '#00ffff', // Cyan
+        '#ff00ff', // Magenta
+        '#b026ff', // Violeta eléctrico
+        '#ff2d95', // Rosa neón
+        '#00d4ff'  // Azul eléctrico
+      ];
+
+      class NeonParticle {
+        constructor() {
+          this.reset(true);
+        }
+
+        reset(initial = false) {
+          this.x = Math.random() * width;
+          this.y = initial ? Math.random() * height : height + 15;
+          this.radius = Math.random() * 2.5 + 1.2;
+          this.color = neonColors[Math.floor(Math.random() * neonColors.length)];
+          this.speedY = Math.random() * 0.9 + 0.35;
+          this.speedX = (Math.random() - 0.5) * 0.6;
+          this.alpha = Math.random() * 0.6 + 0.3;
+          this.fadeSpeed = Math.random() * 0.004 + 0.002;
+          this.pulse = Math.random() * Math.PI;
+        }
+
+        update() {
+          this.y -= this.speedY;
+          this.x += this.speedX + Math.sin(this.pulse) * 0.3;
+          this.pulse += 0.03;
+          this.alpha -= this.fadeSpeed;
+
+          if (this.alpha <= 0 || this.y < -20 || this.x < -20 || this.x > width + 20) {
+            this.reset();
+          }
+        }
+
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, this.alpha);
+          ctx.shadowBlur = this.radius * 5;
+          ctx.shadowColor = this.color;
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new NeonParticle());
+      }
+
+      function renderParticles() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+        requestAnimationFrame(renderParticles);
+      }
+      renderParticles();
+
+      // Ajuste de tamaño al redimensionar la ventana
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      /* ------------------------------------------------------------------------
+         3. EFECTO GLITCH NEÓN REGULAR EN EL TÍTULO
+         (Se activa cada ~5 segundos y dura 320ms con aberración cromática RGB)
+         ------------------------------------------------------------------------ */
+      const glitchTitle = document.getElementById('glitchTitle');
+      function triggerGlitch() {
+        if (glitchTitle) {
+          glitchTitle.classList.add('glitching');
+          setTimeout(() => {
+            glitchTitle.classList.remove('glitching');
+          }, 320);
+        }
+      }
+
+      // Intervalo recurrente de glitch cada 5000ms
+      setInterval(triggerGlitch, 5000);
+      // Trigger inicial después de desaparecer el preloader
+      setTimeout(triggerGlitch, 2200);
+
+      /* ------------------------------------------------------------------------
+         4. CURSOR LÁSER PERSONALIZADO (DESKTOP)
+         ------------------------------------------------------------------------ */
+      const customCursor = document.getElementById('customCursor');
+      if (customCursor && window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('mousemove', (e) => {
+          customCursor.style.left = `${e.clientX}px`;
+          customCursor.style.top = `${e.clientY}px`;
+        });
+
+        // Efecto expansivo en hover sobre enlaces y botones
+        const interactiveElements = document.querySelectorAll('a, button, .social-btn');
+        interactiveElements.forEach(el => {
+          el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+          el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         5. MICRO-PULSO Y SONIDO DE FEEDBACK AL HACER CLICK EN BOTONES
+         ------------------------------------------------------------------------ */
+      const interactiveBtns = document.querySelectorAll('.btn-telegram, .social-btn');
+      interactiveBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          btn.style.transform = 'scale(0.94)';
+          setTimeout(() => {
+            btn.style.transform = '';
+          }, 180);
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>
