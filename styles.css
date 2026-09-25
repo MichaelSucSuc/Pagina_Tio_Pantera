@@ -36,18 +36,16 @@ html, body {
   font-size: 16px;
   overflow-x: hidden;
   position: relative;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
 }
 
-/* Custom Scrollbar */
+/* Ocultar barra de scroll lateral en Chrome, Safari y navegadores WebKit */
 ::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #07060b;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--panther-pink), var(--neon-purple));
-  border-radius: 4px;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
 /* ==========================================================================
@@ -226,8 +224,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 38px 20px 45px 20px;
+  justify-content: center;
+  padding: 26px 20px;
 }
 
 .main-card {
@@ -469,6 +467,7 @@ html, body {
 .action-container {
   width: 100%;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .btn-telegram {
@@ -558,18 +557,21 @@ html, body {
 
 .btn-badge-vip {
   position: absolute;
-  top: -8px;
+  top: -11px;
   right: 18px;
   background: var(--panther-pink);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 900;
-  padding: 2px 8px;
-  border-radius: 10px;
+  padding: 3px 10px;
+  border-radius: 12px;
   letter-spacing: 1.5px;
   color: #ffffff;
-  box-shadow: 0 0 14px var(--panther-pink);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 14px var(--panther-pink), 0 0 24px rgba(255, 42, 133, 0.6);
   animation: vipPulse 1.8s infinite;
-  z-index: 5;
+  z-index: 20;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* ==========================================================================
