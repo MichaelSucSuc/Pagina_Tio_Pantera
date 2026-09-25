@@ -1,0 +1,931 @@
+/* ==========================================================================
+   1. VARIABLES CSS & PALETA INSPIRADA EN TÍO PANTHERA
+   ========================================================================== */
+:root {
+  --bg-base: #07060b;
+  --bg-card: rgba(18, 12, 28, 0.72);
+  --panther-pink: #ff2a85;
+  --neon-fuchsia: #ff007f;
+  --neon-magenta: #e60076;
+  --neon-purple: #9d25f4;
+  --deep-violet: #6a0dad;
+  --neon-cyan: #00e5ff;
+  --chrome-silver: #f1f5f9;
+  --text-white: #ffffff;
+  --text-dim: #cbd5e1;
+  --font-orbitron: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-rajdhani: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+  --glow-pink: 0 0 12px rgba(255, 42, 133, 0.75), 0 0 28px rgba(255, 42, 133, 0.45);
+  --glow-purple: 0 0 12px rgba(157, 37, 244, 0.75), 0 0 28px rgba(157, 37, 244, 0.4);
+  --glow-dual: 0 0 18px rgba(255, 42, 133, 0.6), 0 0 35px rgba(157, 37, 244, 0.5);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-white);
+  font-family: var(--font-rajdhani);
+  font-size: 16px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07060b;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--panther-pink), var(--neon-purple));
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   2. PRELOADER CYBERPUNK CON LOGO DE PANTERA
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #06050a;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+}
+
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-ring {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 42, 133, 0.25) 0%, rgba(7, 6, 11, 0.95) 70%);
+  box-shadow: 0 0 35px rgba(255, 42, 133, 0.6), inset 0 0 25px rgba(157, 37, 244, 0.5);
+}
+
+.loader-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--panther-pink), var(--neon-purple), var(--chrome-silver), var(--panther-pink));
+  animation: spinBorder 1.2s linear infinite;
+  z-index: 1;
+}
+
+.loader-ring::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: #07060b;
+  z-index: 2;
+}
+
+.loader-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(0 0 15px rgba(255, 42, 133, 0.7));
+  animation: pulseGrow 1.2s ease-in-out infinite alternate;
+}
+
+.loader-text {
+  margin-top: 24px;
+  font-family: var(--font-orbitron);
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--panther-pink);
+  text-transform: uppercase;
+  text-shadow: var(--glow-pink);
+  animation: blinkText 0.8s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   3. EFECTOS DE FONDO (DISCO SPOTLIGHTS, GRID SYNTHWAVE, SCANLINES)
+   ========================================================================== */
+.bg-gradient-universe {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 18%, rgba(255, 42, 133, 0.3) 0%, transparent 60%),
+              radial-gradient(circle at 85% 70%, rgba(157, 37, 244, 0.28) 0%, transparent 50%),
+              radial-gradient(circle at 15% 85%, rgba(230, 0, 118, 0.25) 0%, transparent 50%),
+              linear-gradient(135deg, #06050a 0%, #130a1e 50%, #080511 100%);
+  background-size: 300% 300%;
+  animation: universeGradient 16s ease infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Haces de luz de discoteca en tonos Hot Pink & Ultravioleta */
+.disco-spotlights {
+  position: fixed;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 900px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 42, 133, 0.16) 30deg,
+    transparent 60deg,
+    rgba(157, 37, 244, 0.18) 110deg,
+    transparent 150deg,
+    rgba(255, 0, 127, 0.15) 200deg,
+    transparent 250deg,
+    rgba(255, 42, 133, 0.15) 300deg,
+    transparent 360deg
+  );
+  filter: blur(25px);
+  animation: rotateLights 22s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Rejilla synthwave inspirada en los gráficos detrás de la pantera */
+.grid-horizon {
+  position: fixed;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 48vh;
+  background: 
+    linear-gradient(to bottom, rgba(7, 6, 11, 1) 0%, rgba(7, 6, 11, 0.2) 40%, rgba(7, 6, 11, 0) 100%),
+    linear-gradient(transparent 94%, rgba(255, 42, 133, 0.24) 95%, rgba(157, 37, 244, 0.4) 100%),
+    linear-gradient(90deg, transparent 94%, rgba(157, 37, 244, 0.24) 95%, rgba(255, 42, 133, 0.3) 100%);
+  background-size: 100% 100%, 50px 35px, 50px 35px;
+  transform: perspective(300px) rotateX(65deg);
+  transform-origin: bottom center;
+  animation: synthGridMove 4s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.45;
+  box-shadow: 0 -20px 60px rgba(255, 42, 133, 0.15);
+}
+
+/* Partículas Canvas */
+#particlesCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* CRT Scanlines */
+.scanlines-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(18, 12, 28, 0) 50%, rgba(0, 0, 0, 0.38) 50%);
+  background-size: 100% 4px;
+  z-index: 900;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.club-beat-pulse {
+  animation: globalBeatPulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* ==========================================================================
+   4. ESTRUCTURA PRINCIPAL & WRAPPER
+   ========================================================================== */
+.app-viewport {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 38px 20px 45px 20px;
+}
+
+.main-card {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ==========================================================================
+   5. COMPONENTE 1: AVATAR / LOGO PANTERA COOL
+   ========================================================================== */
+.avatar-wrapper {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatAvatar 4.5s ease-in-out infinite;
+}
+
+/* Aura Hot Pink & Púrpura */
+.avatar-aura {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 42, 133, 0.45) 0%, rgba(157, 37, 244, 0.35) 45%, transparent 75%);
+  filter: blur(16px);
+  animation: auraPulse 2.4s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+/* Borde giratorio con degradado de la pantera */
+.avatar-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 3.5px;
+  background: conic-gradient(from 0deg, var(--panther-pink), var(--neon-purple), var(--chrome-silver), var(--neon-fuchsia), var(--panther-pink));
+  animation: spinBorder 3.5s linear infinite;
+  z-index: 2;
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.7), 0 0 40px rgba(157, 37, 244, 0.5);
+}
+
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #08060e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  border: 1.5px solid rgba(255, 42, 133, 0.3);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+}
+
+/* Imagen Oficial Pantera con Celular Cool */
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
+  user-select: none;
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.12) rotate(-3deg);
+  filter: drop-shadow(0 0 15px rgba(255, 42, 133, 0.8));
+}
+
+/* Indicador de Beat / Equalizador */
+.live-sound-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  background: rgba(8, 6, 14, 0.92);
+  border: 1.5px solid var(--panther-pink);
+  box-shadow: var(--glow-pink);
+  border-radius: 12px;
+  padding: 3px 7px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  z-index: 4;
+}
+
+.eq-bar {
+  width: 2.5px;
+  background: var(--panther-pink);
+  border-radius: 2px;
+  box-shadow: 0 0 5px var(--panther-pink);
+}
+.eq-bar:nth-child(1) { height: 7px; animation: eqAnim 0.7s ease infinite alternate; }
+.eq-bar:nth-child(2) { height: 12px; animation: eqAnim 0.5s ease 0.2s infinite alternate; }
+.eq-bar:nth-child(3) { height: 9px; animation: eqAnim 0.6s ease 0.4s infinite alternate; }
+
+/* ==========================================================================
+   6. COMPONENTE 2: NOMBRE, SUBTÍTULO & BADGE
+   ========================================================================== */
+.identity-section {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 26px;
+}
+
+.brand-title {
+  font-family: var(--font-orbitron);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.85),
+               0 0 20px var(--panther-pink),
+               0 0 40px var(--neon-purple);
+  margin-bottom: 6px;
+}
+
+.glitching {
+  animation: glitchSkew 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.brand-title::before,
+.brand-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.glitching::before {
+  left: -2.5px;
+  text-shadow: 2px 0 var(--panther-pink);
+  animation: glitchLayer1 0.32s steps(2, start) both;
+}
+
+.glitching::after {
+  left: 2.5px;
+  text-shadow: -2px 0 var(--neon-purple);
+  animation: glitchLayer2 0.32s steps(2, start) both;
+}
+
+.brand-subtitle {
+  font-family: var(--font-rajdhani);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--chrome-silver);
+  display: block;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(241, 245, 249, 0.4);
+}
+
+.neon-divider {
+  width: 160px;
+  height: 2px;
+  margin: 0 auto 16px auto;
+  background: linear-gradient(90deg, transparent, var(--panther-pink), var(--neon-purple), transparent);
+  box-shadow: 0 0 12px var(--panther-pink), 0 0 18px var(--neon-purple);
+  border-radius: 2px;
+  position: relative;
+}
+
+.neon-divider::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffffff, 0 0 15px var(--panther-pink);
+}
+
+.badge-tagline-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.tagline-text {
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.night-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(255, 42, 133, 0.1);
+  border: 1px solid rgba(255, 42, 133, 0.6);
+  box-shadow: 0 0 14px rgba(255, 42, 133, 0.35), inset 0 0 10px rgba(255, 42, 133, 0.15);
+  font-family: var(--font-orbitron);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--panther-pink);
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--panther-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--panther-pink), 0 0 18px var(--panther-pink);
+  animation: pulseBlink 1.2s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   7. COMPONENTE 3: BOTÓN TELEGRAM EN TONOS PANTERA VIP
+   ========================================================================== */
+.action-container {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.btn-telegram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  padding: 18px 22px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: var(--font-orbitron);
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(115deg, #ff007f 0%, #ff2a85 30%, #9d25f4 70%, #6e0dd0 100%);
+  background-size: 260% 260%;
+  animation: gradientShift 4.5s ease infinite;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.65),
+              0 0 45px rgba(157, 37, 244, 0.45),
+              inset 0 1px 2px rgba(255, 255, 255, 0.7);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-telegram::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: shineSweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.btn-telegram::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.btn-telegram:hover {
+  transform: scale(1.045) translateY(-2px);
+  box-shadow: 0 0 35px rgba(255, 42, 133, 0.9),
+              0 0 60px rgba(157, 37, 244, 0.8),
+              0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.btn-telegram:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 15px rgba(255, 42, 133, 0.8);
+}
+
+.btn-telegram .btn-icon {
+  font-size: 26px;
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 15px rgba(255, 42, 133, 0.9));
+  transition: transform 0.3s ease;
+}
+
+.btn-telegram:hover .btn-icon {
+  transform: scale(1.15) rotate(12deg);
+}
+
+.btn-telegram .btn-text {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 2;
+}
+
+.btn-badge-vip {
+  position: absolute;
+  top: -8px;
+  right: 18px;
+  background: var(--panther-pink);
+  font-size: 9px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  box-shadow: 0 0 14px var(--panther-pink);
+  animation: vipPulse 1.8s infinite;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   8. COMPONENTE 4: SEPARADOR "SÍGUENOS"
+   ========================================================================== */
+.separator-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.separator-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 42, 133, 0.4), var(--neon-purple));
+  box-shadow: 0 0 10px var(--neon-purple);
+  border-radius: 2px;
+  animation: lineExpand 3s ease-in-out infinite alternate;
+}
+
+.separator-line.right {
+  background: linear-gradient(90deg, var(--neon-purple), rgba(255, 42, 133, 0.4), transparent);
+  box-shadow: 0 0 10px var(--panther-pink);
+}
+
+.separator-text {
+  font-family: var(--font-orbitron);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #ffffff;
+  padding: 0 16px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+               0 0 16px var(--panther-pink);
+  user-select: none;
+}
+
+/* ==========================================================================
+   9. COMPONENTE 5: REDES SOCIALES CIRCULARES
+   ========================================================================== */
+.socials-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 34px;
+}
+
+.social-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+
+.social-btn {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.social-btn i {
+  font-size: 27px;
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3), filter 0.3s ease;
+  color: #ffffff;
+}
+
+.social-label {
+  font-family: var(--font-rajdhani);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--chrome-silver);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  user-select: none;
+}
+
+.social-item:nth-child(1) {
+  animation: bounceChain 3.2s ease-in-out 0s infinite;
+}
+.social-item:nth-child(2) {
+  animation: bounceChain 3.2s ease-in-out 0.4s infinite;
+}
+.social-item:nth-child(3) {
+  animation: bounceChain 3.2s ease-in-out 0.8s infinite;
+}
+
+/* Facebook */
+.social-btn.facebook {
+  background: radial-gradient(circle at 35% 35%, rgba(24, 119, 242, 0.45), rgba(12, 20, 42, 0.85));
+  border: 1.5px solid rgba(24, 119, 242, 0.6);
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.4), inset 0 0 12px rgba(24, 119, 242, 0.2);
+}
+.social-btn.facebook i {
+  color: #ffffff;
+  text-shadow: 0 0 12px #1877f2;
+}
+.social-item:hover .social-btn.facebook {
+  transform: scale(1.15) rotate(360deg);
+  border-color: #1877f2;
+  box-shadow: 0 0 30px rgba(24, 119, 242, 0.9), 0 0 50px rgba(0, 229, 255, 0.6);
+}
+.social-item:hover .social-label.label-fb {
+  color: #1877f2;
+  text-shadow: 0 0 10px #1877f2;
+}
+
+/* TikTok (Obsidian + Pink Panther + Violet Accents) */
+.social-btn.tiktok {
+  background: radial-gradient(circle at 35% 35%, rgba(255, 42, 133, 0.25), #07060b);
+  border: 1.5px solid rgba(255, 42, 133, 0.55);
+  box-shadow: -4px 0 15px rgba(0, 229, 255, 0.35), 4px 0 15px rgba(255, 42, 133, 0.4);
+  position: relative;
+}
+.social-btn.tiktok i {
+  color: #ffffff;
+  filter: drop-shadow(-2px 0 0 #00e5ff) drop-shadow(2px 0 0 var(--panther-pink));
+}
+.social-item:hover .social-btn.tiktok {
+  transform: scale(1.15) rotate(360deg);
+  border-color: var(--panther-pink);
+  box-shadow: -6px 0 25px rgba(0, 229, 255, 0.8), 6px 0 25px rgba(255, 42, 133, 0.8);
+}
+.social-item:hover .social-label.label-tt {
+  color: var(--panther-pink);
+  text-shadow: 0 0 10px var(--panther-pink);
+}
+
+/* Instagram */
+.social-btn.instagram {
+  background: linear-gradient(45deg, rgba(240, 148, 51, 0.3), rgba(230, 104, 60, 0.3), rgba(220, 39, 67, 0.3), rgba(204, 35, 102, 0.3), rgba(188, 24, 136, 0.3)), #0c0915;
+  border: 1.5px solid rgba(220, 39, 67, 0.6);
+  box-shadow: 0 0 18px rgba(220, 39, 67, 0.4), inset 0 0 12px rgba(240, 148, 51, 0.2);
+}
+.social-btn.instagram i {
+  color: #ffffff;
+  text-shadow: 0 0 12px #dc2743;
+}
+.social-item:hover .social-btn.instagram {
+  transform: scale(1.15) rotate(360deg);
+  border-color: #ff2a85;
+  box-shadow: 0 0 35px rgba(220, 39, 67, 0.85), 0 0 50px rgba(240, 148, 51, 0.6);
+}
+.social-item:hover .social-label.label-ig {
+  color: #ff2a85;
+  text-shadow: 0 0 10px #dc2743;
+}
+
+/* ==========================================================================
+   10. COMPONENTE 6: FOOTER
+   ========================================================================== */
+.club-footer {
+  text-align: center;
+  padding: 16px 12px;
+  font-family: var(--font-orbitron);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(203, 213, 225, 0.7);
+  border-top: 1px solid rgba(255, 42, 133, 0.15);
+  width: 100%;
+  text-shadow: 0 0 8px rgba(255, 42, 133, 0.35);
+  position: relative;
+}
+
+.club-footer span {
+  color: var(--panther-pink);
+  text-shadow: var(--glow-pink);
+}
+
+/* ==========================================================================
+   11. CURSOR CYBERPUNK (DESKTOP)
+   ========================================================================== */
+@media (pointer: fine) {
+  body {
+    cursor: crosshair;
+  }
+  .cursor-glow {
+    position: fixed;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--panther-pink);
+    box-shadow: 0 0 12px var(--panther-pink), 0 0 24px var(--neon-purple);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease, height 0.15s ease, border-color 0.2s ease;
+    z-index: 9999;
+  }
+  .cursor-glow.active {
+    width: 40px;
+    height: 40px;
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 22px var(--neon-purple), 0 0 35px var(--panther-pink);
+  }
+}
+@media (pointer: coarse) {
+  .cursor-glow {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   12. KEYFRAMES
+   ========================================================================== */
+@keyframes spinBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateLights {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes synthGridMove {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 35px, 50px 0; }
+}
+
+@keyframes universeGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes auraPulse {
+  0% { transform: scale(0.92); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 0.95; }
+}
+
+@keyframes pulseBlink {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shineSweep {
+  0% { left: -120%; }
+  30%, 100% { left: 180%; }
+}
+
+@keyframes bounceChain {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes globalBeatPulse {
+  0%, 100% { transform: scale(1); }
+  10% { transform: scale(1.006); }
+  20% { transform: scale(1); }
+  30% { transform: scale(1.004); }
+  40% { transform: scale(1); }
+}
+
+@keyframes eqAnim {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+@keyframes vipPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px var(--panther-pink); }
+  50% { transform: scale(1.12); box-shadow: 0 0 20px var(--panther-pink), 0 0 30px var(--neon-purple); }
+}
+
+@keyframes lineExpand {
+  0% { opacity: 0.6; transform: scaleX(0.85); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes pulseGrow {
+  0% { transform: scale(0.92); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes blinkText {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes glitchSkew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-3deg); }
+  40% { transform: skew(4deg); }
+  60% { transform: skew(-2deg); }
+  80% { transform: skew(2deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes glitchLayer1 {
+  0% { clip: rect(10px, 9999px, 20px, 0); transform: skew(0.5deg); }
+  50% { clip: rect(35px, 9999px, 50px, 0); transform: skew(-0.5deg); }
+  100% { clip: rect(0, 0, 0, 0); }
+}
+
+@keyframes glitchLayer2 {
+  0% { clip: rect(25px, 9999px, 35px, 0); transform: skew(-0.5deg); }
+  50% { clip: rect(12px, 9999px, 28px, 0); transform: skew(0.5deg); }
+  100% { clip: rect(0, 0, 0, 0); }
+}
+
+/* ==========================================================================
+   13. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 480px) {
+  .app-viewport {
+    padding: 30px 16px 40px 16px;
+  }
+  .brand-title {
+    font-size: 24px;
+  }
+  .brand-subtitle {
+    font-size: 13.5px;
+    letter-spacing: 2.5px;
+  }
+  .btn-telegram {
+    padding: 16px 18px;
+    font-size: 13px;
+  }
+  .socials-container {
+    gap: 18px;
+  }
+  .social-btn {
+    width: 62px;
+    height: 62px;
+  }
+  .social-btn i {
+    font-size: 24px;
+  }
+}
